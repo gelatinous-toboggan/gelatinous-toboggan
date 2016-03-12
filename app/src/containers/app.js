@@ -2,6 +2,7 @@
 import React from 'react-native';
 import LoginContainer from '../containers/login_container';
 import Home from '../components/home';
+import CreateQuilt from '../components/create_quilt'
 
 const {
   Component,
@@ -12,6 +13,7 @@ const {
 const ROUTES = {
   login: LoginContainer,
   home: Home,
+  create: CreateQuilt,
 };
 
 class App extends Component {

@@ -8,6 +8,8 @@ const {
   View,
 } = React;
 
+
+
 const QuiltEntry = () => (
   <View style={styles.container}>
     <Text>Title</Text>
@@ -21,4 +23,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default QuiltEntry;

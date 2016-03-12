@@ -3,28 +3,25 @@ import React from 'react-native';
 import Button from './button';
 
 const {
-  Component,
   PropTypes,
   StyleSheet,
+  Text,
   View,
 } = React;
 
-const onPressStart = (navigator) => {
-  navigator.push({ name: 'create' });
+const onCreatePress = (navigator) => {
+   navigator.push({ name: 'record' });
 }
 
-const onPressView = (navigator) => {
-  navigator.push({ name: 'view' });
-}
-
-const Home = ({ navigator }) => (
+const CreateQuilt = ({ navigator }) => (
   <View style={styles.container}>
-    <Button text={'Start a Quilt'} onPress={() => onPressStart(navigator)} />
-    <Button text={'View Quilts'} onPress={() => onPressView(navigator)} />
+    <Text>Invite Friends</Text>
+    <Text>+Friends</Text>
+    <Button text={'Create!'} onPress={() => onCreatePress(navigator)} />
   </View>
 );
 
-Home.propTypes = {
+CreateQuilt.propTypes = {
   onPress: PropTypes.func,
 };
 
@@ -50,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default CreateQuilt;
