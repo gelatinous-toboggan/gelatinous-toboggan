@@ -1,10 +1,22 @@
-import Immutable, { List } from 'immutable';
-import { ADD_FRIENDS } from '../constants/ActionTypes';
+import Immutable, { List, Map } from 'immutable';
+import { REQUEST_FRIENDS, RECEIVE_FRIENDS } from '../constants/ActionTypes';
 
-export default function friends(state = List(), action) {
+const initialState = Map({
+  isFetching: false,
+  friends: List(),
+});
+
+// todo: add request error handling
+// see: http://redux.js.org/docs/advanced/AsyncActions.html
+export default function friends(state = initialState, action) {
   switch (action.type) {
-    case ADD_FRIENDS:
-      return state.push(Immutable.fromJS(action.payload));
+    case REQUEST_FRIENDS:
+      return state.set('isFetching', true);
+    case RECEIVE_FRIENDS:
+      return state.merge({
+        isFetching: false,
+        friends: List(action.payload), // maybe?
+      });
     default:
       return state;
   }
