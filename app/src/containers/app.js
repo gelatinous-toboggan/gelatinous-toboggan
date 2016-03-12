@@ -1,4 +1,5 @@
 import React from "react-native";
+import Login from '../components/login';
 
 const {
   View,
@@ -10,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>MyText</Text>
+        <Login />
       </View>
     );
   }
