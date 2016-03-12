@@ -12,6 +12,8 @@ const {
 
 class ShowQuilts extends Component {
   onQuiltClick(quiltId, navigator) {
+    //route to specific video not yet implemented
+    navigator.push('video')
   }
 
   render() {

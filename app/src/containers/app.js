@@ -14,6 +14,7 @@ const {
   StyleSheet,
 } = React;
 
+// todo: refactor into redux-based navigation system
 const ROUTES = {
   login: LoginContainer,
   home: Home,
