@@ -2,7 +2,10 @@
 import React from 'react-native';
 import LoginContainer from '../containers/login_container';
 import Home from '../components/home';
-import CreateQuilt from '../components/create_quilt'
+import CreateQuilt from '../components/create_quilt';
+// todo: create seperate component/container for quilts
+import ShowQuilts from '../containers/quilts';
+import ShowCamera from '../components/camera';
 
 const {
   Component,
@@ -14,6 +17,8 @@ const ROUTES = {
   login: LoginContainer,
   home: Home,
   create: CreateQuilt,
+  camera: ShowCamera,
+  view: ShowQuilts,
 };
 
 class App extends Component {

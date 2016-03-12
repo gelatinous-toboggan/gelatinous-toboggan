@@ -5,10 +5,9 @@ import Button from './button';
 const {
   PropTypes,
   StyleSheet,
+  Text,
   View,
 } = React;
-
-
 
 const QuiltEntry = () => (
   <View style={styles.container}>

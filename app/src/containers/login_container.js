@@ -1,11 +1,10 @@
-import React from 'react-native';
+import React, { Component } from 'react-native';
 import { connect } from 'react-redux';
 import Login from '../components/login';
 import { setUser } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 const {
-  Component,
   View,
 } = React;
 

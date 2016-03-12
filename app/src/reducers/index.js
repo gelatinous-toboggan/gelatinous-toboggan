@@ -9,4 +9,4 @@ const rootReducer = combineReducers({
   quilts,
 });
 
-export default rootReducer
+export default rootReducer;

@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import React from 'react-native';
-import Button from './button';
+import Button from "./button";
 
 const {
   PropTypes,
@@ -10,8 +10,8 @@ const {
 } = React;
 
 const onCreatePress = (navigator) => {
-   navigator.push({ name: 'record' });
-}
+  navigator.push({ name: 'record' });
+};
 
 const CreateQuilt = ({ navigator }) => (
   <View style={styles.container}>
@@ -22,9 +22,8 @@ const CreateQuilt = ({ navigator }) => (
 );
 
 CreateQuilt.propTypes = {
-  onPress: PropTypes.func,
+  navigator: PropTypes.object,
 };
-
 
 const styles = StyleSheet.create({
   container: {

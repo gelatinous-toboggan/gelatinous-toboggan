@@ -3,7 +3,6 @@ import React from 'react-native';
 import Button from './button';
 
 const {
-  Component,
   PropTypes,
   StyleSheet,
   View,
@@ -11,11 +10,11 @@ const {
 
 const onPressStart = (navigator) => {
   navigator.push({ name: 'create' });
-}
+};
 
 const onPressView = (navigator) => {
   navigator.push({ name: 'view' });
-}
+};
 
 const Home = ({ navigator }) => (
   <View style={styles.container}>
@@ -25,9 +24,8 @@ const Home = ({ navigator }) => (
 );
 
 Home.propTypes = {
-  onPress: PropTypes.func,
+  navigator: PropTypes.object,
 };
-
 
 const styles = StyleSheet.create({
   container: {
