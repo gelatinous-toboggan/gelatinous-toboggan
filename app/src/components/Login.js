@@ -9,12 +9,19 @@ const {
 
 
 import Button from './button'
+
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: 'Hello World'
     }
+    
+    this.onPress = this.onPress.bind(this);
+  }
+
+  onPress() {
+    this.props.navigator.push({name: 'home'});
   }
 
   render() {

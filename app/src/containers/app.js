@@ -1,28 +1,42 @@
 import React from "react-native";
 import Login from '../components/login';
+import Home from '../components/home';
 
 const {
-  View,
+  Component,
+  Navigator,
+  StyleSheet,
   Text,
-  StyleSheet
+  View,
 } = React;
 
-class App extends React.Component {
+const ROUTES = {
+  login: Login,
+  home: Home,
+}
+
+class App extends Component {
+  renderScene(route, navigator) {
+    const Component = ROUTES[route.name]; // ROUTES['signin'] => Signin
+    return <Component route={route} navigator={navigator} />;
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Login />
-      </View>
+      <Navigator
+        style={styles.container}
+        initialRoute={{name: 'login'}}
+        renderScene={this.renderScene}
+        configureScene={() => Navigator.SceneConfigs.FloatFromRight}
+        />
     );
   }
 }
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
+  },
 })
 
 export default App;
