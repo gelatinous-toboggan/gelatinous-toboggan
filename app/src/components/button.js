@@ -1,13 +1,13 @@
+/* eslint-disable no-use-before-define */
 import React from 'react-native';
 const {
-  Component,
+  PropTypes,
   Text,
   StyleSheet,
   TouchableHighlight,
 } = React;
 
-const Button = ({onPress, text}) => {
-  return (
+const Button = ({ onPress, text }) => (
     <TouchableHighlight
       style={styles.button}
       underlayColor={'gray'}
@@ -15,8 +15,12 @@ const Button = ({onPress, text}) => {
     >
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableHighlight>
-  );
-}
+);
+
+Button.propTypes = {
+  onPress: PropTypes.func,
+  text: PropTypes.string,
+};
 
 const styles = StyleSheet.create({
   button: {

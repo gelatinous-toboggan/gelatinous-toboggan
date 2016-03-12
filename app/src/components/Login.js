@@ -1,6 +1,8 @@
-import React from "react-native";
+/* eslint-disable no-use-before-define */
+import React from 'react-native';
 const {
   Component,
+  PropTypes,
   StyleSheet,
   Text,
   TextInput,
@@ -8,20 +10,20 @@ const {
 } = React;
 
 
-import Button from './button'
+import Button from './button';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'Hello World'
-    }
-    
+      username: 'Hello World',
+    };
+
     this.onPress = this.onPress.bind(this);
   }
 
   onPress() {
-    this.props.navigator.push({name: 'home'});
+    this.props.navigator.push({ name: 'home' });
   }
 
   render() {
@@ -31,7 +33,7 @@ class Login extends Component {
         <TextInput
           style={styles.input}
           value={this.state.username}
-          onChangeText={(username) => this.setState({username})}
+          onChangeText={(username) => this.setState({ username })}
         />
         <Button text={'Log In'} onPress={this.onPress} />
       </View>
@@ -39,7 +41,10 @@ class Login extends Component {
   }
 }
 
-
+// todo: double check this
+Login.propTypes = {
+  navigator: PropTypes.func,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -60,7 +65,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
   },
-})
+});
 
 
 export default Login;

@@ -1,26 +1,23 @@
-import React from "react-native";
+/* eslint-disable no-use-before-define */
+import React from 'react-native';
 import Button from './button';
 
 const {
-  Component,
+  PropTypes,
   StyleSheet,
-  Text,
-  TextInput,
   View,
 } = React;
 
+const Login = ({ onPress }) => (
+  <View style={styles.container}>
+    <Button text={'Start a Quilt'} onPress={onPress} />
+    <Button text={'View Quilts'} onPress={onPress} />
+  </View>
+);
 
-class Login extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Button text={'Start a Quilt'} onPress={this.onPress} />
-        <Button text={'View Quilts'} onPress={this.onPress} />
-      </View>
-    );
-  }
-}
-
+Login.propTypes = {
+  onPress: PropTypes.func,
+};
 
 
 const styles = StyleSheet.create({
@@ -42,7 +39,6 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
   },
-})
-
+});
 
 export default Login;

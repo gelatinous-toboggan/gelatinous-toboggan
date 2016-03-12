@@ -3,8 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "./node_modules/.bin/eslint ."
   },
+  "pre-commit": [
+    "lint"
+  ],
   "dependencies": {
     "immutable": "^3.7.6",
     "lodash": "^3.10.1",

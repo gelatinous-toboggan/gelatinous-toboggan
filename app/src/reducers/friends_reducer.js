@@ -1,4 +1,4 @@
-import Immutable, { List, Map } from 'immutable';
+import Immutable, { List } from 'immutable';
 import { ADD_FRIENDS } from '../constants/ActionTypes';
 
 export default function friends(state = List(), action) {
