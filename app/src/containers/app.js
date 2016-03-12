@@ -25,7 +25,7 @@ const ROUTES = {
 
 class App extends Component {
   renderScene(route, navigator) {
-    const NextComponent = ROUTES['video']; // ROUTES['signin'] => Signin
+    const NextComponent = ROUTES[route.name]; // ROUTES['signin'] => Signin
     return <NextComponent route={route} navigator={navigator} />;
   }
 

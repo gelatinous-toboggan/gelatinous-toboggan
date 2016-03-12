@@ -6,6 +6,7 @@ const {
   PropTypes,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } = React;
 
@@ -13,11 +14,13 @@ const onPress = (navigator) => {
   navigator.push({ name: 'video' });
 };
 
-const QuiltEntry = ({ navigator }) => (
-  <View style={styles.container} onClick={() => onPress(navigator)}>
-    <Text>Title</Text>
-    <Text>Theme</Text>
-  </View>
+const QuiltEntry = ({ navigator, onClick }) => (
+  <TouchableOpacity style={styles.container} onPress={() => onPress(navigator)}>
+    <View>
+      <Text>Title</Text>
+      <Text>Theme</Text>
+    </View>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
