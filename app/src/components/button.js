@@ -6,18 +6,16 @@ const {
   TouchableHighlight,
 } = React;
 
-class Button extends Component {
-  render() {
-    return (
-      <TouchableHighlight
-        style={styles.button}
-        underlayColor={'gray'}
-        onPress={this.props.onPress}
-      >
-        <Text style={styles.buttonText}>{this.props.text}</Text>
-      </TouchableHighlight>
-    );
-  }
+const Button = ({onPress, text}) => {
+  return (
+    <TouchableHighlight
+      style={styles.button}
+      underlayColor={'gray'}
+      onPress={onPress}
+    >
+      <Text style={styles.buttonText}>{text}</Text>
+    </TouchableHighlight>
+  );
 }
 
 const styles = StyleSheet.create({
