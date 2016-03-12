@@ -1,4 +1,32 @@
 (1) Login
+	- enter username
+
+(2) Landing Page
+	- routes to
+		- start quilt
+		- view quilts
+
+(3) Start quilt
+	- select users
+	- give title / theme
+	- record initial video
+
+(4) Receive a quilt to add to
+	- record video / submit
+
+(5) History
+	- quilt list (finished & pending)
+	- view finished quilt on click
+
+(6) Record
+	- take video to store on server
+
+(7) View
+	- view video
+
+----------------------------- MVP 2.0 ---------------------------------
+	
+(1) Login
 	- FB Oauth of Passport
 	- login w/ email
 	- sessions equivalent?
@@ -28,3 +56,11 @@
 
 (7) View
 	- view video
+
+
+
+
+
+
+
+
