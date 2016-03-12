@@ -10,7 +10,7 @@ const {
 } = React;
 
 const onCreatePress = (navigator) => {
-  navigator.push({ name: 'record' });
+  navigator.push({ name: 'camera' });
 };
 
 const CreateQuilt = ({ navigator }) => (

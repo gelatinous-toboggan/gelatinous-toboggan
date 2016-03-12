@@ -9,7 +9,7 @@ const {
 } = React;
 
 const onPressStart = (navigator) => {
-  navigator.push({ name: 'video' }); //should be create
+  navigator.push({ name: 'create' });
 };
 
 const onPressView = (navigator) => {

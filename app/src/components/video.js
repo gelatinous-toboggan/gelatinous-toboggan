@@ -6,13 +6,16 @@ const vid = '/Users/griffin/Documents/HackReactor/Thesis/Quilt/app/spaceboundd.m
 
 const WatchVideo = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Video source={{uri: vid}} style={styles.backgroundVideo} />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   backgroundVideo: {
     position: 'absolute',
     top: 0,

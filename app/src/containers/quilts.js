@@ -11,11 +11,19 @@ const {
 } = React;
 
 class ShowQuilts extends Component {
+  onQuiltClick(quilt, navigator) {
+    
+  }
+
   render() {
     // need to add key to these quilt entries
     return (
       <View style={styles.container}>
-        {this.props.quilts.map(() => <QuiltEntry navigator={this.props.navigator} />)}
+        {this.props.quilts.map((quilt) =>
+          <QuiltEntry
+            navigator={this.props.navigator}
+          />)
+        }
       </View>
     );
   }
