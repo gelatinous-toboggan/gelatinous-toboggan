@@ -23,6 +23,7 @@ class Login extends Component {
   }
 
   onPress() {
+    this.props.setUser(this.state.username);
     this.props.navigator.push({ name: 'home' });
   }
 
@@ -43,7 +44,7 @@ class Login extends Component {
 
 // todo: double check this
 Login.propTypes = {
-  navigator: PropTypes.func,
+  navigator: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

@@ -5,6 +5,8 @@ import quilts from './quilts_reducer';
 
 const rootReducer = combineReducers({
   user,
+  friends,
+  quilts,
 });
 
 export default rootReducer

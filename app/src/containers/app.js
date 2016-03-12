@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import React from 'react-native';
-import Login from '../components/login';
+import LoginContainer from '../containers/login_container';
 import Home from '../components/home';
 
 const {
@@ -10,7 +10,7 @@ const {
 } = React;
 
 const ROUTES = {
-  login: Login,
+  login: LoginContainer,
   home: Home,
 };
 
