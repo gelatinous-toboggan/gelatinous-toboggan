@@ -9,8 +9,12 @@ const {
   View,
 } = React;
 
-const QuiltEntry = () => (
-  <View style={styles.container}>
+const onPress = (navigator) => {
+  navigator.push({ name: 'video' });
+};
+
+const QuiltEntry = ({ navigator }) => (
+  <View style={styles.container} onClick={() => onPress(navigator)}>
     <Text>Title</Text>
     <Text>Theme</Text>
   </View>

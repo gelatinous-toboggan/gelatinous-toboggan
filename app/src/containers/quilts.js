@@ -12,11 +12,10 @@ const {
 
 class ShowQuilts extends Component {
   render() {
-    console.log(this.props.quilts);
     // need to add key to these quilt entries
     return (
       <View style={styles.container}>
-        {this.props.quilts.map(() => <QuiltEntry />)}
+        {this.props.quilts.map(() => <QuiltEntry navigator={this.props.navigator} />)}
       </View>
     );
   }

@@ -6,6 +6,7 @@ import CreateQuilt from '../components/create_quilt';
 // todo: create seperate component/container for quilts
 import ShowQuilts from '../containers/quilts';
 import ShowCamera from '../components/camera';
+import WatchVideo from '../components/video';
 
 const {
   Component,
@@ -19,6 +20,7 @@ const ROUTES = {
   create: CreateQuilt,
   camera: ShowCamera,
   view: ShowQuilts,
+  video: WatchVideo
 };
 
 class App extends Component {
