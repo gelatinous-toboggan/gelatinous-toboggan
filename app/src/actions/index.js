@@ -1,8 +1,9 @@
-import { ADD_USER } from '../constants/ActionTypes';
+import { SET_USER } from '../constants/ActionTypes';
 
 let userId = 0;
-export const addUser = (username) => ({
-  type: ADD_USER,
+
+export const setUser = (username) => ({
+  type: SET_USER,
   payload: {
     id: userId++,
     username,

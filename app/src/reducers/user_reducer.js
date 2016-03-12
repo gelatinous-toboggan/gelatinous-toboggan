@@ -1,9 +1,9 @@
 import Immutable, { Map } from 'immutable';
-import { ADD_USER } from '../constants/ActionTypes';
+import { SET_USER } from '../constants/ActionTypes';
 
 export default function(state = Map(), action) {
   switch (action.type) {
-    case ADD_USER:
+    case SET_USER:
       return Immutable.fromJS(action.payload);
     default:
       return state;
