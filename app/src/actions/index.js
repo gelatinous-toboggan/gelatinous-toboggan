@@ -31,8 +31,37 @@ export function fetchFriends() {
 
     // todo: hook up appropriately with server
     // todo: catch errors
-    return fetch('/api/friends')
-      .then(response => response.json())
-      .then(json => dispatch(receiveFriends(json)));
+
+    // return fetch('/api/friends')
+    //   .then(response => response.json())
+    //   .then(json => dispatch(receiveFriends(json)));
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(['joe', 'katy', 'kelly', 'griffin']), 100);
+    })
   };
+}
+
+const requestQuilts = () => ({
+  type: REQUEST_QUILTS,
+})
+
+const receiveQuilts = (quilts) => {
+  type: RECEIVE_QUILTS,
+  payload: quilts,
+}
+
+export function fetchQuilts() {
+  return (dispatch) => {
+    dispatch(requestQuilts());
+
+    // todo: hook up appropriately with server
+    // todo: catch errors
+
+    // return fetch('/api/friends')
+    //   .then(response => response.json())
+    //   .then(json => dispatch(receiveFriends(json)));
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve([{}]))
+    })
+  }
 }
