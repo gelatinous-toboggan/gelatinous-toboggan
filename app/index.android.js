@@ -1,7 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
+/*eslint-disable */
 'use strict';
 import React, {
   AppRegistry,
