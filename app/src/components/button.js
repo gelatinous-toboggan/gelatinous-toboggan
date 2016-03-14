@@ -7,6 +7,7 @@ const {
   TouchableHighlight,
 } = React;
 
+// this is our button style that should be reused across the app
 const Button = ({ onPress, text }) => (
     <TouchableHighlight
       style={styles.button}
