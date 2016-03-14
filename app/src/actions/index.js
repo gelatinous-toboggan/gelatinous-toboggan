@@ -2,6 +2,7 @@ import { SET_USER, START_QUILT, REQUEST_FRIENDS, RECEIVE_FRIENDS } from '../cons
 
 let userId = 0; // for development, should be deleted once server implemented
 
+// dispatched at login to set the current user of the app
 export const setUser = (username) => ({
   type: SET_USER,
   payload: {
@@ -10,6 +11,7 @@ export const setUser = (username) => ({
   },
 });
 
+// dispatched when quilt initially started
 export const startQuilt = (data) => ({
   type: START_QUILT,
   payload: data,
@@ -45,10 +47,10 @@ const requestQuilts = () => ({
   type: REQUEST_QUILTS,
 })
 
-const receiveQuilts = (quilts) => {
+const receiveQuilts = (quilts) => ({
   type: RECEIVE_QUILTS,
   payload: quilts,
-}
+});
 
 export function fetchQuilts() {
   return (dispatch) => {
@@ -61,7 +63,7 @@ export function fetchQuilts() {
     //   .then(response => response.json())
     //   .then(json => dispatch(receiveFriends(json)));
     return new Promise((resolve, reject) => {
-      setTimeout(() => resolve([{}]))
-    })
+      setTimeout(() => resolve(['gm758', 'tasiov', 'test1', 'test2']), 1000);
+    });
   }
 }
