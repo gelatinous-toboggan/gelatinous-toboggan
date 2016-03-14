@@ -1,3 +1,5 @@
+/* eslint-disable new-cap */
+
 import Immutable, { List } from 'immutable';
 import { START_QUILT } from '../constants/ActionTypes';
 

@@ -1,9 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react-native';
-import Button from './button';
 
 const {
-  Component,
   PropTypes,
   StyleSheet,
   Text,
@@ -12,17 +10,17 @@ const {
 } = React;
 
 // todo: make these behave like check boxes
-class FriendEntry extends Component {
-  render() {
-    return (
-      <TouchableOpacity style={styles.container}>
-        <View>
-          <Text>{this.props.username}</Text>
-        </View>
-      </TouchableOpacity>
-    );
-  }
-}
+const FriendEntry = ({ username }) => (
+  <TouchableOpacity style={styles.container}>
+    <View>
+      <Text>{username}</Text>
+    </View>
+  </TouchableOpacity>
+);
+
+FriendEntry.propTypes = {
+  username: PropTypes.string,
+};
 
 const styles = StyleSheet.create({
   container: {

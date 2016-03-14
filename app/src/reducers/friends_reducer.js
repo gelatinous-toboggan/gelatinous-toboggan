@@ -1,4 +1,5 @@
-import Immutable, { List, Map } from 'immutable';
+/* eslint-disable new-cap */
+import { List, Map } from 'immutable';
 import { REQUEST_FRIENDS, RECEIVE_FRIENDS } from '../constants/ActionTypes';
 
 const initialState = Map({

@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define */
+/* eslint-disable no-use-before-define, react/prefer-stateless-function */
 import React from 'react-native';
 import LoginContainer from '../containers/login_container';
 import Home from '../components/home';
@@ -13,9 +13,7 @@ import NavigationBar from 'react-native-navbar';
 const {
   Component,
   Navigator,
-  StatusBarIOS,
   StyleSheet,
-  Text,
   View,
 } = React;
 
@@ -31,6 +29,10 @@ const ROUTES = {
 };
 
 class App extends Component {
+  configScene() {
+    return Navigator.SceneConfigs.FloatFromRight;
+  }
+
   renderScene(route, navigator) {
     const NextComponent = ROUTES[route.name];
     return <NextComponent route={route} navigator={navigator} />;
@@ -39,11 +41,11 @@ class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <NavigationBar statusBar={{hidden:true}} title={{title: 'Quilt'}}/>
+        <NavigationBar statusBar={{ hidden: true }} title={{ title: 'Quilt' }} />
         <Navigator
           initialRoute={{ name: 'login' }}
           renderScene={this.renderScene}
-          configureScene={() => Navigator.SceneConfigs.FloatFromRight}
+          configureScene={this.configScene}
         />
       </View>
     );

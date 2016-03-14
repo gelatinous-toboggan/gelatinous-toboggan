@@ -1,6 +1,5 @@
 /* eslint-disable no-use-before-define */
 import React from 'react-native';
-import Button from './button';
 
 const {
   PropTypes,
@@ -14,7 +13,7 @@ const onPress = (navigator) => {
   navigator.push({ name: 'video' });
 };
 
-const QuiltEntry = ({ navigator, onClick, username }) => (
+const QuiltEntry = ({ /* navigator, onClick, */ username }) => (
   <View>
     <TouchableHighlight onPress={onPress}>
       <View style={styles.row}>
@@ -25,6 +24,12 @@ const QuiltEntry = ({ navigator, onClick, username }) => (
   </View>
 );
 
+QuiltEntry.propTypes = {
+  navigator: PropTypes.object,
+  onClick: PropTypes.func,
+  username: PropTypes.string,
+};
+
 const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
@@ -33,7 +38,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     padding: 5,
-  }
+  },
 });
 
 export default QuiltEntry;

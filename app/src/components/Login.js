@@ -20,11 +20,16 @@ class Login extends Component {
     };
 
     this.onPress = this.onPress.bind(this);
+    this.onType = this.onType.bind(this);
   }
 
   onPress() {
     this.props.setUser(this.state.username);
     this.props.navigator.push({ name: 'home' });
+  }
+
+  onType(username) {
+    return this.setState(username);
   }
 
   render() {
@@ -34,7 +39,7 @@ class Login extends Component {
         <TextInput
           style={styles.input}
           value={this.state.username}
-          onChangeText={(username) => this.setState({ username })}
+          onChangeText={this.onType}
         />
         <Button text={'Log In'} onPress={this.onPress} />
       </View>
@@ -45,6 +50,7 @@ class Login extends Component {
 // todo: double check this
 Login.propTypes = {
   navigator: PropTypes.object,
+  setUser: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

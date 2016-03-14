@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 import Immutable, { Map } from 'immutable';
 import { SET_USER } from '../constants/ActionTypes';
 

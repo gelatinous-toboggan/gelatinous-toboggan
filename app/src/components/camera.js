@@ -11,23 +11,32 @@ const {
 } = React;
 
 class ShowCamera extends Component {
+  constructor(props) {
+    super(props);
+    this.takePicture = this.takePicture.bind(this);
+    this.cameraRef = this.cameraRef.bind(this);
+  }
+
   takePicture() {
     this.camera.capture()
       .then(data => console.log(data))
       .catch(err => console.error(err));
   }
 
+  cameraRef(cam) {
+    // not sure the reason for this function yet
+    this.camera = cam;
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Camera
-          ref={(cam) => {
-            this.camera = cam;
-          }}
+          ref={this.cameraRef}
           style={styles.preview}
           aspect={'fill'}
         >
-          <Text style={styles.capture} onPress={this.takePicture.bind(this)}>
+          <Text style={styles.capture} onPress={this.takePicture}>
             [CAPTURE]
           </Text>
         </Camera>

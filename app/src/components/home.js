@@ -1,27 +1,38 @@
-/* eslint-disable no-use-before-define */
+/* eslint-disable no-use-before-define, react/prefer-stateless-function */
 import React from 'react-native';
 import Button from './button';
 
 const {
+  Component,
   PropTypes,
   StyleSheet,
   View,
 } = React;
 
-const onPressStart = (navigator) => {
-  navigator.push({ name: 'create' });
-};
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.onPressStart = this.onPressStart.bind(this);
+    this.onPressView = this.onPressView.bind(this);
+  }
 
-const onPressView = (navigator) => {
-  navigator.push({ name: 'view' });
-};
+  onPressStart() {
+    this.props.navigator.push({ name: 'create' });
+  }
 
-const Home = ({ navigator }) => (
-  <View style={styles.container}>
-    <Button text={'Start a Quilt'} onPress={() => onPressStart(navigator)} />
-    <Button text={'View Quilts'} onPress={() => onPressView(navigator)} />
-  </View>
-);
+  onPressView() {
+    this.props.navigator.push({ name: 'view' });
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Button text={'Start a Quilt'} onPress={this.onPressStart} />
+        <Button text={'View Quilts'} onPress={this.onPressView} />
+      </View>
+    );
+  }
+}
 
 Home.propTypes = {
   navigator: PropTypes.object,

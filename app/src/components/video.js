@@ -1,16 +1,15 @@
+/* eslint-disable no-use-before-define */
 import React from 'react-native';
 import Video from 'react-native-video';
 const { View, StyleSheet } = React;
 
 const vid = '/Users/griffin/Documents/HackReactor/Thesis/Quilt/app/spaceboundd.mp4';
 
-const WatchVideo = () => {
-  return (
+const WatchVideo = () => (
     <View style={styles.container}>
-      <Video source={{uri: vid}} style={styles.backgroundVideo} />
+      <Video source={{ uri: vid }} style={styles.backgroundVideo} />
     </View>
-  )
-}
+);
 
 const styles = StyleSheet.create({
   container: {

@@ -45,6 +45,7 @@ class CreateQuilt extends Component {
 
 CreateQuilt.propTypes = {
   navigator: PropTypes.object,
+  createQuilt: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch) => ({
