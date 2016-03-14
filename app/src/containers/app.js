@@ -7,11 +7,16 @@ import CreateQuilt from '../components/create_quilt';
 import ShowQuilts from '../containers/quilts';
 import ShowCamera from '../components/camera';
 import WatchVideo from '../components/video';
+import FriendsContainer from '../containers/friends';
+import NavigationBar from 'react-native-navbar';
 
 const {
   Component,
   Navigator,
+  StatusBarIOS,
   StyleSheet,
+  Text,
+  View,
 } = React;
 
 // todo: refactor into redux-based navigation system
@@ -21,23 +26,26 @@ const ROUTES = {
   create: CreateQuilt,
   camera: ShowCamera,
   view: ShowQuilts,
-  video: WatchVideo
+  video: WatchVideo,
+  friends: FriendsContainer,
 };
 
 class App extends Component {
   renderScene(route, navigator) {
-    const NextComponent = ROUTES[route.name]; // ROUTES['signin'] => Signin
+    const NextComponent = ROUTES[route.name];
     return <NextComponent route={route} navigator={navigator} />;
   }
 
   render() {
     return (
-      <Navigator
-        style={styles.container}
-        initialRoute={{ name: 'login' }}
-        renderScene={this.renderScene}
-        configureScene={() => Navigator.SceneConfigs.FloatFromRight}
-      />
+      <View style={styles.container}>
+        <NavigationBar statusBar={{hidden:true}} title={{title: 'Quilt'}}/>
+        <Navigator
+          initialRoute={{ name: 'login' }}
+          renderScene={this.renderScene}
+          configureScene={() => Navigator.SceneConfigs.FloatFromRight}
+        />
+      </View>
     );
   }
 }
@@ -45,6 +53,16 @@ class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#eee',
+  },
+  navBar: {
+    backgroundColor: 'green',
+  },
+  header: {
+    marginTop: 20,
+    marginBottom: 10,
+    fontSize: 20,
+    textAlign: 'center',
   },
 });
 

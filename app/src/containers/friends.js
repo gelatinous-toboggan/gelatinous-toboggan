@@ -1,32 +1,43 @@
 /* eslint-disable no-use-before-define */
 import React, { Component } from 'react-native';
-import QuiltEntry from '../components/quilt_entry';
+import FriendEntry from '../components/friend_entry';
 import { connect } from 'react-redux';
 import Immutable from 'immutable'; // just for testing
 
 const {
+  ActivityIndicatorIOS,
+  ListView,
   PropTypes,
   StyleSheet,
+  Text,
   View,
 } = React;
 
+// todo: consider factoring out view rendering into own component
 class ShowQuilts extends Component {
-  onQuiltClick(quiltId, navigator) {
-    //route to specific video not yet implemented
+  constructor(props) {
+    super(props);
+    this.getDataSource = this.getDataSource.bind(this);
+  }
+
+  getDataSource() {
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => Immutable.is(r1, r2)});
+    return ds.cloneWithRows(this.props.friends.toArray());
+  }
+
+  onSubmitClick(quiltId, navigator) {
+    //route to video camera not yet implemented
     navigator.push('video')
   }
 
   render() {
-    // need to add key to these quilt entries
     return (
-      <View style={styles.container}>
-        {this.props.quilts.map((quilt, i) =>
-          <QuiltEntry
-            onClick={() => console.log('test')}
-            navigator={this.props.navigator}
-          />)
-        }
-      </View>
+      <ListView
+        style={styles.container}
+        dataSource={this.getDataSource()}
+        renderRow={(rowData) => <FriendEntry username={rowData} />}
+      >
+      </ListView>
     );
   }
 }
@@ -40,29 +51,16 @@ ShowQuilts.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  input: {
-    padding: 4,
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 5,
-    margin: 5,
-    width: 200,
-    alignSelf: 'center',
-  },
-  label: {
-    fontSize: 18,
   },
 });
 
-
 const mapStateToProps = (state) => {
-  // const quilts = state.get('quilts');
-  const testQuilts = Immutable.List.of(1, 2, 3, 4, 5, 6);
-  return { quilts: testQuilts };
+  // const users = state.get('users');
+  const testUsers = Immutable.List.of('griffin', 'tasio', 'joe', 'sally');
+  return { friends: testUsers };
 };
+
+const mapDispatchToProps = (dispatch) => {
+}
 
 export default connect(mapStateToProps)(ShowQuilts);
