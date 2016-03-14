@@ -1,9 +1,12 @@
-import Immutable, { Map } from 'immutable';
+import Immutable, { Map, List } from 'immutable';
 import { SET_CURRENT_QUILT, ADD_TO_CURRENT_QUILT } from '../constants/ActionTypes';
 
-const initialState = {
-  
-}
+const initialState = Map({
+  title: '',
+  theme: '',
+  users: List(),
+  video: null,
+})
 
 export default function(state = Map(), action) {
   switch (action.type) {
