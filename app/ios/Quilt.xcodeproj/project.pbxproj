@@ -24,6 +24,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		853812591C93E89000B4CA0B /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 857FB1371C93E6A800ADD9C7 /* libRCTVideo.a */; };
 		857FB1311C93D30500ADD9C7 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 857FB1301C93D2C100ADD9C7 /* libRCTCamera.a */; };
+		85D7EBDE1C97A0F600B3867C /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D7EBDD1C97A06D00B3867C /* libRNFS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTVideo;
 		};
+		85D7EBDC1C97A06D00B3867C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85D7EBD81C97A06D00B3867C /* RNFS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
+			remoteInfo = RNFS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +152,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		857FB12B1C93D2C100ADD9C7 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		857FB1321C93E6A700ADD9C7 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
+		85D7EBD81C97A06D00B3867C /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85D7EBDE1C97A0F600B3867C /* libRNFS.a in Frameworks */,
 				853812591C93E89000B4CA0B /* libRCTVideo.a in Frameworks */,
 				857FB1311C93D30500ADD9C7 /* libRCTCamera.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -282,6 +292,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				85D7EBD81C97A06D00B3867C /* RNFS.xcodeproj */,
 				857FB1321C93E6A700ADD9C7 /* RCTVideo.xcodeproj */,
 				857FB12B1C93D2C100ADD9C7 /* RCTCamera.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -339,6 +350,14 @@
 			isa = PBXGroup;
 			children = (
 				857FB1371C93E6A800ADD9C7 /* libRCTVideo.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		85D7EBD91C97A06D00B3867C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				85D7EBDD1C97A06D00B3867C /* libRNFS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -460,6 +479,10 @@
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
+				{
+					ProductGroup = 85D7EBD91C97A06D00B3867C /* Products */;
+					ProjectRef = 85D7EBD81C97A06D00B3867C /* RNFS.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -554,6 +577,13 @@
 			remoteRef = 857FB1361C93E6A800ADD9C7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		85D7EBDD1C97A06D00B3867C /* libRNFS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFS.a;
+			remoteRef = 85D7EBDC1C97A06D00B3867C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -578,7 +608,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -586,7 +616,7 @@
 			name = "Bundle React Native code and images";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
