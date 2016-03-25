@@ -6,6 +6,7 @@ import React from 'react-native';
 import LoginContainer from '../containers/login_container';
 import Home from '../components/home';
 import CreateQuilt from '../components/create_quilt';
+import SelectFriendsContainer from '../containers/selectFriends_container';
 // todo: create seperate component/container for quilts
 import ShowQuilts from './quilts';
 import ShowCamera from './camera';
@@ -36,6 +37,8 @@ const ROUTES = {
   username: Username,
   view: ShowQuilts,
   video: WatchVideo,
+  friends: FriendsContainer,
+  selectFriends: SelectFriendsContainer,
 };
 
 class App extends Component {
