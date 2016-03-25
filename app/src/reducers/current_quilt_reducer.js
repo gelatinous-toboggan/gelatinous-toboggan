@@ -5,6 +5,7 @@ import {
   ADD_TO_QUILT,
   SELECT_WATCH_QUILT,
   REVIEW_QUILT,
+  INVITE_FRIENDS,
 } from '../constants/ActionTypes';
 
 const initialState = Map({
@@ -25,6 +26,8 @@ export default function currentQuilt(state = initialState, action) {
       return state.merge(action.payload);
     case REVIEW_QUILT:
       return state.set('file', action.payload);
+    case INVITE_FRIENDS:
+      return state.set('users', List(action.payload));
     default:
       return state;
   }

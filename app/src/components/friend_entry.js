@@ -9,12 +9,12 @@ const {
 } = React;
 
 // todo: make these behave like check boxes (edit style=)
-const FriendEntry = ({ user, onCheckboxCheck, onCheckboxUncheck }) => (
+const FriendEntry = ({ user, onCheckboxCheck, onCheckboxUncheck, checked }) => (
   <TouchableOpacity style={styles.container}>
     <CheckBox
       label={user.username}
       id={user.id}
-      checked={false}
+      checked={checked}
       onCheckboxCheck={onCheckboxCheck}
       onCheckboxUncheck={onCheckboxUncheck}
     />

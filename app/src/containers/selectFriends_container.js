@@ -9,16 +9,19 @@ import FriendEntry from '../components/friend_entry';
 import { connect } from 'react-redux';
 import Immutable from 'immutable'; // just for testing
 import { fetchFriends } from '../actions/index';
+import Button from '../components/button';
+import { inviteFriends } from '../actions/index';
 
 const {
   ListView,
   PropTypes,
   StyleSheet,
   Text,
+  View,
 } = React;
 
 // todo: consider factoring out view rendering into own component
-class FriendsContainer extends Component {
+class SelectFriendsContainer extends Component {
   constructor(props) {
     super(props);
     this.getDataSource = this.getDataSource.bind(this);
@@ -27,28 +30,17 @@ class FriendsContainer extends Component {
     this.onRenderRow = this.onRenderRow.bind(this);
     props.fetchFriends({ username: 'tasio' });
     this.checkedFriends = {};
+    this.onInvitePress = this.onInvitePress.bind(this);
   }
 
   onCheckboxCheck(id) {
     this.checkedFriends[id.toString()] = id;
     // log array of checked user id's
-    const checkedIds = [];
-    for (const key in this.checkedFriends) {
-      if (Number.isInteger(this.checkedFriends[key])) {
-        checkedIds.push(this.checkedFriends[key]);
-      }
-    }
   }
 
   onCheckboxUncheck(id) {
-    this.checkedFriends[id.toString()] = '';
+    delete this.checkedFriends[id.toString()];
     // log array of checked user id's
-    const checkedIds = [];
-    for (const key in this.checkedFriends) {
-      if (Number.isInteger(this.checkedFriends[key])) {
-        checkedIds.push(this.checkedFriends[key]);
-      }
-    }
   }
 
   onSubmitClick(quiltId, navigator) {
@@ -56,14 +48,27 @@ class FriendsContainer extends Component {
     navigator.push('video');
   }
 
+  onInvitePress() {
+    const checkedIds = [];
+    for (const key in this.checkedFriends) {
+        checkedIds.push(this.checkedFriends[key]);
+    }
+    this.props.inviteFriends(checkedIds);
+    this.props.navigator.push({ name: 'camera' });
+  }
+
   onRenderRow(rowData) {
     return (
-      <FriendEntry
-        user={rowData}
-        onCheckboxCheck={this.onCheckboxCheck}
-        onCheckboxUncheck={this.onCheckboxUncheck}
-        key={rowData.id}
-      />
+        <FriendEntry
+          user={rowData}
+          onCheckboxCheck={this.onCheckboxCheck}
+          onCheckboxUncheck={this.onCheckboxUncheck}
+          key={rowData.id}
+          checked={
+            this.props.currentQuilt.get('users').toArray()?
+            this.props.currentQuilt.get('users').toArray().indexOf(rowData.id) !== -1:false
+          }
+        />
     );
   }
 
@@ -77,16 +82,19 @@ class FriendsContainer extends Component {
       return <Text>Loading Friends...</Text>;
     }
     return (
-      <ListView
-        style={styles.container}
-        dataSource={this.getDataSource()}
-        renderRow={this.onRenderRow}
-      />
+      <View>
+        <ListView
+          style={styles.container}
+          dataSource={this.getDataSource()}
+          renderRow={this.onRenderRow}
+        />
+        <Button text={'Invite!'} onPress={this.onInvitePress} />
+      </View>
     );
   }
 }
 
-FriendsContainer.propTypes = {
+SelectFriendsContainer.propTypes = {
   onPress: PropTypes.func,
   // quilts: PropTypes.object,
   friends: PropTypes.object,
@@ -101,8 +109,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   const friends = state.get('friends');
+  const currentQuilt = state.get('currentQuilt');
   // const testUsers = Immutable.List.of('griffin', 'tasio', 'joe', 'sally');
-  return { friends };
+  return { friends, currentQuilt };
 };
 
 function mapDispatchToProps(dispatch) {
@@ -110,7 +119,10 @@ function mapDispatchToProps(dispatch) {
     fetchFriends: (data) => {
       dispatch(fetchFriends(data));
     },
+    inviteFriends: (data) => {
+      dispatch(inviteFriends(data));
+    },
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FriendsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectFriendsContainer);

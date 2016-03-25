@@ -17,6 +17,7 @@ import {
   WATCH_QUILT,
   LOGIN_OR_SIGNUP,
   RECEIVE_USER_ERROR,
+  INVITE_FRIENDS,
 } from '../constants/ActionTypes';
 
 import ip from '../config';
@@ -237,4 +238,11 @@ export function selectWatchQuilt(data) {
     type: SELECT_WATCH_QUILT,
     payload: data,
   };
+}
+
+export function inviteFriends(data) {
+  return {
+    type: INVITE_FRIENDS,
+    payload: data,
+  }
 }
