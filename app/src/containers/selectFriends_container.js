@@ -51,7 +51,9 @@ class SelectFriendsContainer extends Component {
   onInvitePress() {
     const checkedIds = [];
     for (const key in this.checkedFriends) {
+      if (this.checkedFriends.hasOwnProperty(key)) {
         checkedIds.push(this.checkedFriends[key]);
+      }
     }
     this.props.inviteFriends(checkedIds);
     this.props.navigator.push({ name: 'camera' });
@@ -65,8 +67,8 @@ class SelectFriendsContainer extends Component {
           onCheckboxUncheck={this.onCheckboxUncheck}
           key={rowData.id}
           checked={
-            this.props.currentQuilt.get('users').toArray()?
-            this.props.currentQuilt.get('users').toArray().indexOf(rowData.id) !== -1:false
+            this.props.currentQuilt.get('users').toArray() ?
+            this.props.currentQuilt.get('users').toArray().indexOf(rowData.id) !== -1 : false
           }
         />
     );

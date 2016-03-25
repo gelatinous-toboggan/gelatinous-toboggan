@@ -244,5 +244,5 @@ export function inviteFriends(data) {
   return {
     type: INVITE_FRIENDS,
     payload: data,
-  }
+  };
 }

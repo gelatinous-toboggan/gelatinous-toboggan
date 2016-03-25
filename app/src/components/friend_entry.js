@@ -26,6 +26,7 @@ FriendEntry.propTypes = {
   user: PropTypes.object,
   onCheckboxCheck: PropTypes.func,
   onCheckboxUncheck: PropTypes.func,
+  checked: PropTypes.boolean,
 };
 
 const styles = StyleSheet.create({
