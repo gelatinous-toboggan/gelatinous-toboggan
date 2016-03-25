@@ -22,32 +22,17 @@ class FriendsContainer extends Component {
   constructor(props) {
     super(props);
     this.getDataSource = this.getDataSource.bind(this);
-    this.onCheckboxCheck = this.onCheckboxCheck.bind(this);
-    this.onCheckboxUncheck = this.onCheckboxUncheck.bind(this);
+    this.onCheck = this.onCheck.bind(this);
     this.onRenderRow = this.onRenderRow.bind(this);
     props.fetchFriends({ username: 'tasio' });
     this.checkedFriends = {};
   }
 
-  onCheckboxCheck(id) {
-    this.checkedFriends[id.toString()] = id;
-    // log array of checked user id's
-    const checkedIds = [];
-    for (let key in this.checkedFriends) {
-      if (Number.isInteger(this.checkedFriends[key])) {
-        checkedIds.push(this.checkedFriends[key]);
-      }
-    }
-  }
-
-  onCheckboxUncheck(id) {
-    this.checkedFriends[id.toString()] = '';
-    // log array of checked user id's
-    const checkedIds = [];
-    for (let key in this.checkedFriends) {
-      if (Number.isInteger(this.checkedFriends[key])) {
-        checkedIds.push(this.checkedFriends[key]);
-      }
+  onCheck(id) {
+    if (this.checkedFriends[id.toString()]) {
+      delete this.checkedFriends[id.toString()];
+    } else {
+      this.checkedFriends[id.toString()] = id;
     }
   }
 
@@ -60,8 +45,7 @@ class FriendsContainer extends Component {
     return (
       <FriendEntry
         user={rowData}
-        onCheckboxCheck={this.onCheckboxCheck}
-        onCheckboxUncheck={this.onCheckboxUncheck}
+        onCheck={this.onCheck}
         key={rowData.id}
       />
     );

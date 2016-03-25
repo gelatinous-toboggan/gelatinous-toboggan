@@ -99,7 +99,7 @@ const postQuilt = (options) => {
     .then(() => (
       db.User.findAll({
         where: {
-          username: {
+          id: {
             $in: options.users,
           },
         },

@@ -25,22 +25,19 @@ class SelectFriendsContainer extends Component {
   constructor(props) {
     super(props);
     this.getDataSource = this.getDataSource.bind(this);
-    this.onCheckboxCheck = this.onCheckboxCheck.bind(this);
-    this.onCheckboxUncheck = this.onCheckboxUncheck.bind(this);
+    this.onCheck = this.onCheck.bind(this);
     this.onRenderRow = this.onRenderRow.bind(this);
     props.fetchFriends({ username: 'tasio' });
     this.checkedFriends = {};
     this.onInvitePress = this.onInvitePress.bind(this);
   }
 
-  onCheckboxCheck(id) {
-    this.checkedFriends[id.toString()] = id;
-    // log array of checked user id's
-  }
-
-  onCheckboxUncheck(id) {
-    delete this.checkedFriends[id.toString()];
-    // log array of checked user id's
+  onCheck(id) {
+    if (this.checkedFriends[id.toString()]) {
+      delete this.checkedFriends[id.toString()];
+    } else {
+      this.checkedFriends[id.toString()] = id;
+    }
   }
 
   onSubmitClick(quiltId, navigator) {
@@ -63,13 +60,12 @@ class SelectFriendsContainer extends Component {
     return (
         <FriendEntry
           user={rowData}
-          onCheckboxCheck={this.onCheckboxCheck}
-          onCheckboxUncheck={this.onCheckboxUncheck}
-          key={rowData.id}
+          onCheck={this.onCheck}
           checked={
             this.props.currentQuilt.get('users').toArray() ?
             this.props.currentQuilt.get('users').toArray().indexOf(rowData.id) !== -1 : false
           }
+          key={rowData.id}
         />
     );
   }
