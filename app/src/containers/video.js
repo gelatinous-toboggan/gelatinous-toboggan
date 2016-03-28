@@ -49,14 +49,14 @@ class WatchVideo extends Component {
           this.props.postQuilt(Object.assign(this.props.currentQuilt, {
             creator: this.props.creator,
             video: data,
-            token: this.props.token
+            token: this.props.token,
           }));
         } else {
           this.props.addToQuilt({
             quiltId: this.props.currentQuilt.id,
             creator: this.props.creator,
             video: data,
-            token: this.props.token
+            token: this.props.token,
           });
         }
         this.props.navigator.replace({ name: 'home' });
