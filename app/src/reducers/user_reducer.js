@@ -30,9 +30,9 @@ export default function (state = initialState, action) {
     case LOGIN_OR_SIGNUP:
       return state.set('loginOrSignup', action.payload);
     case SET_USERNAME:
-      return  state.set('username', action.payload);
+      return state.set('username', action.payload);
     case SET_PHONE_NUMBER:
-      return state.set('phoneNumber', action.payload)
+      return state.set('phoneNumber', action.payload);
     default:
       return state;
   }

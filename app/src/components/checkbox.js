@@ -26,9 +26,9 @@ class CheckBox extends Component {
   onChange() {
     this.setState({ check: !this.state.check });
     if (this.state.check) {
-      this.props.onCheckboxCheck(this.props.id);
+      this.props.onCheck(this.props.id);
     } else {
-      this.props.onCheckboxUncheck(this.props.id);
+      this.props.onCheck(this.props.id);
     }
   }
 
@@ -78,10 +78,9 @@ CheckBox.propTypes = {
   labelStyle: PropTypes.object,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
-  onCheckboxCheck: PropTypes.func,
-  onCheckboxUncheck: PropTypes.func,
   id: PropTypes.number,
   labelBefore: PropTypes.string,
+  onCheck: PropTypes.func,
 };
 
 CheckBox.getDefaultProps = {

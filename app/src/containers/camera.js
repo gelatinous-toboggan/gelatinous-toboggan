@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
 // to action creator to post data
 function mapStateToProps(state) {
   const currentQuilt = state.get('currentQuilt').toObject();
-  currentQuilt.users = currentQuilt.users.toArray();
+  // currentQuilt.users = currentQuilt.users.toArray();
   const creator = state.get('user');
 
   return {

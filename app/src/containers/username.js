@@ -26,7 +26,7 @@ class Username extends Component {
 
   onEnter() {
     this.props.updateUser(this.props.userId, { username: this.state.username });
-    this.props.navigator.push({ name: 'phone' })
+    this.props.navigator.push({ name: 'phone' });
   }
 
   render() {
@@ -40,7 +40,7 @@ class Username extends Component {
         />
         <Button text="Enter" onPress={this.onEnter} />
       </View>
-    )
+    );
   }
 }
 
@@ -74,8 +74,8 @@ function mapDispatchToProps(dispatch) {
   return {
     updateUser: (id, data) => {
       dispatch(updateUser(id, data));
-    }
-  }
+    },
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Username);

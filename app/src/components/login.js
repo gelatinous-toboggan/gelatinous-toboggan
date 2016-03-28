@@ -54,7 +54,7 @@ class Login extends Component {
       this.props.loginUser(this.state.email, this.state.password)
         .then(() => {
           if (this.props.token) {
-            this.props.navigator.resetTo({ name: 'home' })
+            this.props.navigator.resetTo({ name: 'home' });
           }
         });
     } else {

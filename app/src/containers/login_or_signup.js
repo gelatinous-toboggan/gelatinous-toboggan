@@ -28,9 +28,7 @@ class LoginOrSignupContainer extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    selectLoginOrSignup: (selection) => {
-      return dispatch(selectLoginOrSignup(selection));
-    }
+    selectLoginOrSignup: (selection) => dispatch(selectLoginOrSignup(selection)),
   };
 }
 
