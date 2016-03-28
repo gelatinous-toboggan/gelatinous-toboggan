@@ -25,7 +25,7 @@ import ip from '../config';
 export const selectLoginOrSignup = (selection) => ({
   type: LOGIN_OR_SIGNUP,
   payload: selection,
-})
+});
 
 export const createQuilt = (data) => ({
   type: CREATE_QUILT,
@@ -54,7 +54,7 @@ const receiveUser = (user) => ({
 
 const receiveUserError = () => ({
   type: RECEIVE_USER_ERROR,
-})
+});
 
 export function signupUser(email, password) {
   return (dispatch) => {
@@ -65,7 +65,7 @@ export function signupUser(email, password) {
     .then(response => response.json())
     .then(user => dispatch(receiveUser(user)))
     .catch(error => console.error('error', error));
-  }
+  };
 }
 
 export function loginUser(usernameOrEmail, password) {
@@ -77,7 +77,7 @@ export function loginUser(usernameOrEmail, password) {
     .then(response => response.json())
     .then(user => dispatch(receiveUser(user)))
     .catch(error => dispatch(receiveUserError()));
-  }
+  };
 }
 
 export function updateUser(id, data) {
@@ -89,7 +89,7 @@ export function updateUser(id, data) {
     })
     .then(() => dispatch(receiveUser(data)))
     .catch(error => console.error('error', error));
-  }
+  };
 }
 
 export const reviewQuilt = (file) => ({
@@ -194,7 +194,7 @@ export function fetchFriends(options) {
 // clean up implementation
 export function crossReferenceContacts(contacts) {
   return (dispatch) => {
-    dispatch(requestFriends())
+    dispatch(requestFriends());
     return fetch(`http://${ip}:8000/api/cross`, {
       method: 'POST',
       body: JSON.stringify(contacts),
@@ -205,12 +205,10 @@ export function crossReferenceContacts(contacts) {
 
 // add authentication, dispatches
 export function postFriends(userId, ...friendsId) {
-  return (dispatch) => {
-    return fetch(`http://${ip}:8000/api/friends/${userId}`, {
-      method: 'POST',
-      body: JSON.stringify({ friends: friendsId }),
-    })
-  }
+  return (dispatch) => fetch(`http://${ip}:8000/api/friends/${userId}`, {
+    method: 'POST',
+    body: JSON.stringify({ friends: friendsId }),
+  });
 }
 
 const requestQuilts = () => ({
@@ -244,5 +242,5 @@ export function inviteFriends(data) {
   return {
     type: INVITE_FRIENDS,
     payload: data,
-  }
+  };
 }

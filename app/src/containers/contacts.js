@@ -32,7 +32,7 @@ class ContactsContainer extends Component {
 
     Contacts.getAll((err, contacts) => {
       if (err) {
-        console.log('error', err);
+        console.error('error', err);
       } else {
         const cleanContacts = contacts.reduce((acc, nxt) => {
           acc.push({
@@ -72,7 +72,7 @@ class ContactsContainer extends Component {
   onRenderRow(rowData) {
     return (
       <FriendEntry
-        user={{id: rowData.id, username: rowData.fullName}}
+        user={ { id: rowData.id, username: rowData.fullName } }
         onCheckboxCheck={this.onCheckboxCheck}
         onCheckboxUncheck={this.onCheckboxUncheck}
         key={rowData.id}
@@ -92,9 +92,9 @@ class ContactsContainer extends Component {
     return (
       <View>
         <ListView
-        style={styles.container}
-        dataSource={this.getDataSource()}
-        renderRow={this.onRenderRow}
+          style={styles.container}
+          dataSource={this.getDataSource()}
+          renderRow={this.onRenderRow}
         />
         <Button text="Submit" onPress={this.onSubmitClick} />
       </View>
@@ -125,12 +125,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    crossReferenceContacts: (contacts) => {
-      return dispatch(crossReferenceContacts(contacts));
-    },
-    postFriends: (userId, friendIds) => {
-      return dispatch(postFriends(userId, ...friendIds));
-    },
+    crossReferenceContacts: (contacts) => dispatch(crossReferenceContacts(contacts)),
+    postFriends: (userId, friendIds) => dispatch(postFriends(userId, ...friendIds)),
   };
 }
 
