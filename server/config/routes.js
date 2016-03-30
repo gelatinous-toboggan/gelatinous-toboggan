@@ -143,11 +143,12 @@ export default (app) => {
     })
   });
 
-  app.get('/api/user/:username', (req, res) => {
-    if (_.isEmpty(req.params.username)) {
+  app.get('/api/user/find', (req, res) => {
+    console.log('get user', req.query);
+    if (_.isEmpty(req.query)) {
       res.status(400).send('Failed to retrieve user');
     } else {
-      controller.getUser(req.params)
+      controller.getUser(req.query)
       .then((data) => res.status(200).send(data || {}))
       .catch((error) => res.status(500).send(`Failed get user request: ${error}`));
     }

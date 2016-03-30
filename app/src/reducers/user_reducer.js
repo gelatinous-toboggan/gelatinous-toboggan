@@ -9,11 +9,14 @@ import {
   RECEIVE_USER_ERROR,
   RECEIVE_USERNAME_EXIST_ERROR,
   RECEIVE_USERNAME_NOT_EXIST,
+  RECEIVE_EMAIL_EXIST_ERROR,
+  RECEIVE_EMAIL_NOT_EXIST,
 } from '../constants/ActionTypes';
 
 const initialState = Map({
   isFetching: false,
   duplicateUsername: false,
+  duplicateEmail: false,
   id: null,
   username: null,
   token: null,
@@ -25,7 +28,7 @@ const initialState = Map({
 export default function (state = initialState, action) {
   switch (action.type) {
     case REQUEST_USER:
-      return state.merge({ isFetching: true, duplicateUsername: false });
+      return state.merge({ isFetching: true, duplicateUsername: false, duplicateEmail: false });
     case RECEIVE_USER:
       return state.merge(Object.assign({ isFetching: false }, action.payload));
     case RECEIVE_USER_ERROR:
@@ -45,6 +48,16 @@ export default function (state = initialState, action) {
       return state.merge({
         isFetching: false,
         duplicateUsername: false,
+      });
+    case RECEIVE_EMAIL_EXIST_ERROR:
+      return state.merge({
+        isFetching: false,
+        duplicateEmail: true,
+      });
+    case RECEIVE_EMAIL_NOT_EXIST:
+      return state.merge({
+        isFetching: false,
+        duplicateEmail: false,
       });
     default:
       return state;
