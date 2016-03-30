@@ -16,6 +16,7 @@ const {
   StyleSheet,
   Text,
   View,
+  ActivityIndicatorIOS,
 } = React;
 
 class NotifContainer extends Component {
@@ -42,7 +43,11 @@ class NotifContainer extends Component {
 
   render() {
     if (this.props.notifs.get('isFetching')) {
-      return <Text>Loading Notifications...</Text>;
+      return <ActivityIndicatorIOS
+        animating={true}
+        style={{height: 80}}
+        size="large"
+      />;
     }
     return (
       <ListView
