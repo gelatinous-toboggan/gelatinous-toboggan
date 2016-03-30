@@ -148,6 +148,7 @@ export function checkUsername(id, data) {
     return fetch(`http://${ip}:8000/api/user/find?username=${query.username}`)
     .then(response => response.json())
     .then(user => {
+      console.log('checkUsername user', user);
       if(user.username){
         return dispatch(receiveUsernameExistError());
       }
