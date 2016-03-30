@@ -9,6 +9,7 @@ import Validator from 'email-validator';
 import owasp from 'owasp-password-strength-test';
 import Keychain from 'react-native-keychain';
 import ip from '../config';
+import _ from 'lodash';
 
 const {
   Component,
@@ -24,11 +25,11 @@ const CustomButton = new MKButton.Builder()
 class Login extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       email: '',
       password: '',
       strongPassword: false,
+      validEmail: true,
     };
 
     owasp.config({
@@ -43,6 +44,8 @@ class Login extends Component {
     this.onBack = this.onBack.bind(this);
     this.onTypeEmail = this.onTypeEmail.bind(this);
     this.onTypePassword = this.onTypePassword.bind(this);
+    this.onCheckEmail = this.onCheckEmail.bind(this);
+    this.debounceOnCheckEmail = _.debounce(this.onCheckEmail, 300, { 'leading': true });
   }
 
   onPress() {
@@ -58,9 +61,7 @@ class Login extends Component {
           }
         });
     } else {
-      if (!Validator.validate(this.state.email)) {
-        console.log(this.state.email, ' is invalid, please try again.');
-      } else {
+      if (this.state.validEmail && this.state.strongPassword) {
         this.props.signupUser(emailToLowercase, this.state.password)
         .then(() => {
           // TODO: move setting sign up credentials to final phase of signup
@@ -79,8 +80,17 @@ class Login extends Component {
     this.props.navigator.pop();
   }
 
+  onCheckEmail() {
+    const emailToLowercase = this.state.email.toLowerCase();
+    this.props.checkEmail({ email: emailToLowercase });
+  }
+
   onTypeEmail(email) {
-    return this.setState({ email });
+    this.setState({ email });
+    this.setState({ validEmail: Validator.validate(this.state.email) });
+    if (this.state.validEmail) {
+      this.debounceOnCheckEmail();
+    }
   }
 
   onTypePassword(password) {
@@ -89,6 +99,13 @@ class Login extends Component {
   }
 
   render() {
+    let errorMessage = <Text />;
+    if (!this.state.validEmail && this.props.loginOrSignup === 'signup') {
+      errorMessage = <Text>Invalid email, please try again!</Text>;
+    } else if (this.props.duplicateEmail && this.props.loginOrSignup === 'signup') {
+      errorMessage = <Text>Email already exists, please try again!</Text>;
+    }
+
     let strongPasswordMessage = <Text />;
     if (!this.state.strongPassword && this.state.password && this.props.loginOrSignup !== 'login') {
       strongPasswordMessage = <Text>Weak Password!</Text>;
@@ -97,6 +114,7 @@ class Login extends Component {
       <View style={login.container}>
         <NavBar onPress={this.onBack} text={this.props.loginOrSignup === 'login' ? 'Login' : 'Sign Up'} />
         <View style={login.containerBody}>
+          { errorMessage }
           <EmailInput
             value={this.state.email}
             onChangeText={this.onTypeEmail}
@@ -127,6 +145,8 @@ Login.propTypes = {
   loginOrSignup: PropTypes.string,
   loginUser: PropTypes.func,
   signupUser: PropTypes.func,
+  duplicateEmail: PropTypes.bool,
+  checkEmail: PropTypes.func,
 };
 
 

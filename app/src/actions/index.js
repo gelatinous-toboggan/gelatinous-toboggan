@@ -24,6 +24,8 @@ import {
   RECEIVE_USERNAME_NOT_EXIST,
   REQUEST_CONTACTS,
   RECEIVE_CONTACTS,
+  RECEIVE_EMAIL_EXIST_ERROR,
+  RECEIVE_EMAIL_NOT_EXIST,
 } from '../constants/ActionTypes';
 
 import ip from '../config';
@@ -73,6 +75,14 @@ const receiveUsernameNotExist = () => ({
   type: RECEIVE_USERNAME_NOT_EXIST,
 });
 
+const receiveEmailExistError = () => ({
+  type: RECEIVE_EMAIL_EXIST_ERROR,
+});
+
+const receiveEmailNotExist = () => ({
+  type: RECEIVE_EMAIL_NOT_EXIST,
+});
+
 export function signupUser(email, password) {
   return (dispatch) => {
     dispatch(requestUser());
@@ -117,7 +127,6 @@ export function updateUser(id, data) {
     })
     .then(user => {
       if (user._bodyInit) {
-        console.log('user exist');
         return dispatch(receiveUsernameExistError());
       }
       return dispatch(receiveUser(data));
@@ -134,13 +143,32 @@ export function checkUsername(id, data) {
   delete query.token;
   return (dispatch) => {
     dispatch(requestUser());
-    return fetch(`http://${ip}:8000/api/user/${query.username}`)
+    return fetch(`http://${ip}:8000/api/user/find?username=${query.username}`)
     .then(response => response.json())
     .then(user => {
-      if(user.username){
+      if (user.username) {
         return dispatch(receiveUsernameExistError());
       }
       return dispatch(receiveUsernameNotExist());
+    })
+    .catch(error => {
+      return dispatch(receiveUserError());
+    });
+  };
+}
+
+export function checkEmail(data) {
+  const query = Object.assign({}, data);
+  delete query.token;
+  return (dispatch) => {
+    dispatch(requestUser());
+    return fetch(`http://${ip}:8000/api/user/find?email=${query.email}`)
+    .then(response => response.json())
+    .then(user => {
+      if(user.email){
+        return dispatch(receiveEmailExistError());
+      }
+      return dispatch(receiveEmailNotExist());
     })
     .catch(error => {
       console.error('error retreiving user:', error);

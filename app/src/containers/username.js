@@ -1,6 +1,12 @@
 /* eslint-disable no-use-before-define */
 import React from 'react-native';
 import { connect } from 'react-redux';
+import { updateUser, checkUsername } from '../actions/index';
+import UsernameInput from '../components/username_input';
+import { login } from '../assets/styles';
+import { MKButton } from 'react-native-material-kit';
+import _ from 'lodash';
+
 const {
   Component,
   Text,
@@ -8,11 +14,6 @@ const {
   StyleSheet,
   PropTypes,
 } = React;
-import { updateUser, checkUsername } from '../actions/index';
-import UsernameInput from '../components/username_input';
-import { login } from '../assets/styles';
-import { MKButton } from 'react-native-material-kit';
-import _ from 'lodash';
 
 const CustomButton = new MKButton.Builder()
   .withStyle(login.button)
@@ -25,6 +26,7 @@ class Username extends Component {
     this.onEnter = this.onEnter.bind(this);
     this.onCheckUsername = this.onCheckUsername.bind(this);
     this.state = { username: '' };
+    this.debouncedOnCheckUsername = _.debounce(this.onCheckUsername, 300, { 'leading': true });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,8 +35,8 @@ class Username extends Component {
     }
   }
 
-  onCheckUsername(){
-    if(this.state.username){
+  onCheckUsername() {
+    if (this.state.username) {
       const usernameToLowercase = this.state.username.toLowerCase();
       this.props.checkUsername(this.props.userId,
         { username: usernameToLowercase, token: this.props.token });
@@ -43,8 +45,7 @@ class Username extends Component {
 
   onType(username) {
     this.setState({ username });
-    const context = this;
-    _.debounce(this.onCheckUsername, 500)();
+    this.debouncedOnCheckUsername();
   }
 
   onEnter() {
@@ -66,7 +67,7 @@ class Username extends Component {
             value={this.state.username}
             onChangeText={this.onType}
           />
-          <CustomButton onPress={() => {if(!this.props.duplicateUsername){this.onEnter()}}}>
+          <CustomButton onPress={this.onEnter}>
             <Text style={login.buttonText}>{this.props.loginOrSignup}</Text>
           </CustomButton>
         </View>
@@ -107,6 +108,7 @@ Username.propTypes = {
   token: PropTypes.string,
   duplicateUsername: PropTypes.bool,
   loginOrSignup: PropTypes.func,
+  checkUsername: PropTypes.func,
 };
 
 function mapStateToProps(state) {
