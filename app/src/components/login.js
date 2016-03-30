@@ -45,7 +45,7 @@ class Login extends Component {
     this.onTypeEmail = this.onTypeEmail.bind(this);
     this.onTypePassword = this.onTypePassword.bind(this);
     this.onCheckEmail = this.onCheckEmail.bind(this);
-    this.debounceOnCheckEmail = _.debounce(this.onCheckEmail, 500, { 'leading': true });
+    this.debounceOnCheckEmail = _.debounce(this.onCheckEmail, 300, { 'leading': true });
   }
 
   onPress() {

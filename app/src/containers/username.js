@@ -26,7 +26,7 @@ class Username extends Component {
     this.onEnter = this.onEnter.bind(this);
     this.onCheckUsername = this.onCheckUsername.bind(this);
     this.state = { username: '' };
-    this.debouncedOnCheckUsername = _.debounce(this.onCheckUsername, 500, { 'leading': true });
+    this.debouncedOnCheckUsername = _.debounce(this.onCheckUsername, 300, { 'leading': true });
   }
 
   componentWillReceiveProps(nextProps) {
