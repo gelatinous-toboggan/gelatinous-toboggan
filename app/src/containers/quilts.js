@@ -12,6 +12,7 @@ const {
   PropTypes,
   Text,
   View,
+  ActivityIndicatorIOS,
 } = React;
 
 // todo: consider factoring out view rendering into own component
@@ -55,7 +56,11 @@ class ShowQuilts extends Component {
 
   render() {
     if (this.props.quilts.get('isFetching')) {
-      return <Text>Loading Quilts...</Text>;
+      return <ActivityIndicatorIOS
+        animating={true}
+        style={{height: 80}}
+        size="large"
+      />;
     }
     return (
       <View style={viewQuilts.container}>
