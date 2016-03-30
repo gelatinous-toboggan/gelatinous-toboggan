@@ -26,11 +26,8 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-<<<<<<< fb578e4e273fc6c24fb2f01b59d68a0a862e32da
       strongPassword: false,
-=======
       validEmail: true,
->>>>>>> Display error if input email is invalid or already in use on user creation
     };
 
     owasp.config({
