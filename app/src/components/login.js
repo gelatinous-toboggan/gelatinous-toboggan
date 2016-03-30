@@ -9,6 +9,7 @@ import Validator from 'email-validator';
 import owasp from 'owasp-password-strength-test';
 import Keychain from 'react-native-keychain';
 import ip from '../config';
+import _ from 'lodash';
 
 const {
   Component,
@@ -24,7 +25,6 @@ const CustomButton = new MKButton.Builder()
 class Login extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       email: '',
       password: '',
@@ -43,6 +43,7 @@ class Login extends Component {
     this.onBack = this.onBack.bind(this);
     this.onTypeEmail = this.onTypeEmail.bind(this);
     this.onTypePassword = this.onTypePassword.bind(this);
+    this.onCheckEmail = this.onCheckEmail.bind(this);
   }
 
   onPress() {
@@ -78,8 +79,16 @@ class Login extends Component {
     this.props.navigator.pop();
   }
 
+  onCheckEmail(){
+    console.log('onCheckEmail');
+    const emailToLowercase = this.state.email.toLowerCase();
+    this.props.checkEmail( { email: emailToLowercase } );
+  }
+
   onTypeEmail(email) {
-    return this.setState({ email });
+    console.log('onTypeEmail');
+    this.setState({ email });
+    _.debounce(this.onCheckEmail, 500)();
   }
 
   onTypePassword(password) {
@@ -126,6 +135,7 @@ Login.propTypes = {
   loginOrSignup: PropTypes.string,
   loginUser: PropTypes.func,
   signupUser: PropTypes.func,
+  duplicateEmail: PropTypes.bool,
 };
 
 
