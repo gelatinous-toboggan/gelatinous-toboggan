@@ -55,20 +55,23 @@ class ShowQuilts extends Component {
   }
 
   render() {
+    let quiltsListView = <ListView
+      dataSource={this.getDataSource()}
+      renderRow={this.onRenderRow}
+    />;
+    
     if (this.props.quilts.get('isFetching')) {
-      return <ActivityIndicatorIOS
+      quiltsListView = <ActivityIndicatorIOS
         animating={true}
         style={{height: 80}}
         size="large"
       />;
     }
+
     return (
       <View style={viewQuilts.container}>
         <NavBar onPress={this.props.navigator.pop} />
-        <ListView
-          dataSource={this.getDataSource()}
-          renderRow={this.onRenderRow}
-        />
+        {quiltsListView}
       </View>
     );
   }
