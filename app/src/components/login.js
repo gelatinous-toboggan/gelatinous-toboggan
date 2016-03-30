@@ -99,9 +99,9 @@ class Login extends Component {
 
   render() {
     let errorMessage = <Text />;
-    if (!this.state.validEmail) {
+    if (!this.state.validEmail && this.props.loginOrSignup === 'signup') {
       errorMessage = <Text>Invalid email, please try again!</Text>;
-    } else if (this.props.duplicateEmail) {
+    } else if (this.props.duplicateEmail && this.props.loginOrSignup === 'signup') {
       errorMessage = <Text>Email already exists, please try again!</Text>;
     }
 
