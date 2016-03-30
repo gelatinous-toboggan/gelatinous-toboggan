@@ -68,9 +68,7 @@ class Login extends Component {
           }
         });
     } else {
-      if (!this.state.validEmail) {
-        console.log(this.state.email, ' is invalid, please try again.');
-      } else {
+      if (this.state.validEmail && this.state.strongPassword) {
         this.props.signupUser(emailToLowercase, this.state.password)
         .then(() => {
           if (this.props.token) {
