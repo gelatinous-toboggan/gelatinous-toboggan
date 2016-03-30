@@ -67,7 +67,6 @@ class Login extends Component {
           }
         });
     } else {
-      console.log('signup')
       if (!this.state.validEmail) {
         console.log(this.state.email, ' is invalid, please try again.');
       } else {
@@ -85,17 +84,15 @@ class Login extends Component {
     this.props.navigator.pop();
   }
 
-  onCheckEmail(){
-    console.log('onCheckEmail');
+  onCheckEmail() {
     const emailToLowercase = this.state.email.toLowerCase();
-    this.props.checkEmail( { email: emailToLowercase } );
+    this.props.checkEmail({ email: emailToLowercase });
   }
 
   onTypeEmail(email) {
-    console.log('onTypeEmail');
     this.setState({ email });
     this.setState({ validEmail: Validator.validate(this.state.email) });
-    if(this.state.validEmail){
+    if (this.state.validEmail) {
       _.debounce(this.onCheckEmail, 500)();
     }
   }
@@ -108,9 +105,9 @@ class Login extends Component {
   render() {
     let errorMessage = <Text />;
     if (!this.state.validEmail) {
-      errorMessage = <Text>Invalid email, please try again!</Text>
+      errorMessage = <Text>Invalid email, please try again!</Text>;
     } else if (this.props.duplicateEmail) {
-      errorMessage = <Text>Email already exists, please try again!</Text>
+      errorMessage = <Text>Email already exists, please try again!</Text>;
     }
 
     let strongPasswordMessage = <Text />;
@@ -153,6 +150,7 @@ Login.propTypes = {
   loginUser: PropTypes.func,
   signupUser: PropTypes.func,
   duplicateEmail: PropTypes.bool,
+  checkEmail: PropTypes.func,
 };
 
 

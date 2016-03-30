@@ -30,7 +30,7 @@ function mapDispatchToProps(dispatch) {
   return {
     selectLoginOrSignup: (selection) => {
       return dispatch(selectLoginOrSignup(selection));
-    }
+    },
   };
 }
 

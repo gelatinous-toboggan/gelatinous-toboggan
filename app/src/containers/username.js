@@ -34,8 +34,8 @@ class Username extends Component {
     }
   }
 
-  onCheckUsername(){
-    if(this.state.username){
+  onCheckUsername() {
+    if (this.state.username) {
       const usernameToLowercase = this.state.username.toLowerCase();
       this.props.checkUsername(this.props.userId,
         { username: usernameToLowercase, token: this.props.token });
@@ -105,6 +105,7 @@ Username.propTypes = {
   token: PropTypes.string,
   duplicateUsername: PropTypes.bool,
   loginOrSignup: PropTypes.func,
+  checkUsername: PropTypes.func,
 };
 
 function mapStateToProps(state) {

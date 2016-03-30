@@ -79,7 +79,6 @@ const receiveEmailNotExist = () => ({
 });
 
 export function signupUser(email, password) {
-  console.log('within signupUser action');
   return (dispatch) => {
     dispatch(requestUser());
     return fetch(`http://${ip}:8000/api/auth?email=${email}&password=${password}`, {
@@ -114,7 +113,6 @@ export function updateUser(id, data) {
     })
     .then(user => {
       if (user._bodyInit) {
-        console.log('user exist');
         return dispatch(receiveUsernameExistError());
       }
       return dispatch(receiveUser(data));
@@ -134,21 +132,18 @@ export function checkUsername(id, data) {
     return fetch(`http://${ip}:8000/api/user/find?username=${query.username}`)
     .then(response => response.json())
     .then(user => {
-      console.log('checkUsername user', user);
-      if(user.username){
+      if (user.username) {
         return dispatch(receiveUsernameExistError());
       }
       return dispatch(receiveUsernameNotExist());
     })
     .catch(error => {
-      console.error('error retreiving user:', error);
       return dispatch(receiveUserError());
     });
   };
 }
 
 export function checkEmail(data) {
-  console.log('checkEmail');
   const query = Object.assign({}, data);
   delete query.token;
   return (dispatch) => {
@@ -156,7 +151,6 @@ export function checkEmail(data) {
     return fetch(`http://${ip}:8000/api/user/find?email=${query.email}`)
     .then(response => response.json())
     .then(user => {
-      console.log('checkemail receive:', user);
       if(user.email){
         return dispatch(receiveEmailExistError());
       }
