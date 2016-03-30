@@ -28,7 +28,11 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+<<<<<<< fb578e4e273fc6c24fb2f01b59d68a0a862e32da
       strongPassword: false,
+=======
+      validEmail: true,
+>>>>>>> Display error if input email is invalid or already in use on user creation
     };
 
     owasp.config({
@@ -59,7 +63,8 @@ class Login extends Component {
           }
         });
     } else {
-      if (!Validator.validate(this.state.email)) {
+      console.log('signup')
+      if (!this.state.validEmail) {
         console.log(this.state.email, ' is invalid, please try again.');
       } else {
         this.props.signupUser(emailToLowercase, this.state.password)
@@ -88,7 +93,10 @@ class Login extends Component {
   onTypeEmail(email) {
     console.log('onTypeEmail');
     this.setState({ email });
-    _.debounce(this.onCheckEmail, 500)();
+    this.setState({ validEmail: Validator.validate(this.state.email) });
+    if(this.state.validEmail){
+      _.debounce(this.onCheckEmail, 500)();
+    }
   }
 
   onTypePassword(password) {
@@ -97,6 +105,13 @@ class Login extends Component {
   }
 
   render() {
+    let errorMessage = <Text />;
+    if (!this.state.validEmail) {
+      errorMessage = <Text>Invalid email, please try again!</Text>
+    } else if (this.props.duplicateEmail) {
+      errorMessage = <Text>Email already exists, please try again!</Text>
+    }
+
     let strongPasswordMessage = <Text />;
     if (!this.state.strongPassword && this.state.password && this.props.loginOrSignup !== 'login') {
       strongPasswordMessage = <Text>Weak Password!</Text>;
@@ -105,6 +120,7 @@ class Login extends Component {
       <View style={login.container}>
         <NavBar onPress={this.onBack} text={this.props.loginOrSignup === 'login' ? 'Login' : 'Sign Up'} />
         <View style={login.containerBody}>
+          { errorMessage }
           <EmailInput
             value={this.state.email}
             onChangeText={this.onTypeEmail}

@@ -145,7 +145,7 @@ export function checkUsername(id, data) {
   delete query.token;
   return (dispatch) => {
     dispatch(requestUser());
-    return fetch(`http://${ip}:8000/api/user/${query.username}`)
+    return fetch(`http://${ip}:8000/api/user/find?username=${query.username}`)
     .then(response => response.json())
     .then(user => {
       if(user.username){
@@ -166,7 +166,7 @@ export function checkEmail(data) {
   delete query.token;
   return (dispatch) => {
     dispatch(requestUser());
-    return fetch(`http://${ip}:8000/api/user?email=${query.email}`)
+    return fetch(`http://${ip}:8000/api/user/find?email=${query.email}`)
     .then(response => response.json())
     .then(user => {
       console.log('checkemail receive:', user);
