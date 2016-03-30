@@ -22,6 +22,8 @@ import {
   INVITE_FRIENDS,
   RECEIVE_USERNAME_EXIST_ERROR,
   RECEIVE_USERNAME_NOT_EXIST,
+  RECEIVE_EMAIL_EXIST_ERROR,
+  RECEIVE_EMAIL_NOT_EXIST,
 } from '../constants/ActionTypes';
 
 import ip from '../config';
@@ -68,7 +70,16 @@ const receiveUsernameNotExist = () => ({
   type: RECEIVE_USERNAME_NOT_EXIST,
 });
 
+const receiveEmailExistError = () => ({
+  type: RECEIVE_EMAIL_EXIST_ERROR,
+});
+
+const receiveEmailNotExist = () => ({
+  type: RECEIVE_EMAIL_NOT_EXIST,
+});
+
 export function signupUser(email, password) {
+  console.log('within signupUser action');
   return (dispatch) => {
     dispatch(requestUser());
     return fetch(`http://${ip}:8000/api/auth?email=${email}&password=${password}`, {
@@ -127,6 +138,28 @@ export function checkUsername(id, data) {
         return dispatch(receiveUsernameExistError());
       }
       return dispatch(receiveUsernameNotExist());
+    })
+    .catch(error => {
+      console.error('error retreiving user:', error);
+      return dispatch(receiveUserError());
+    });
+  };
+}
+
+export function checkEmail(data) {
+  console.log('checkEmail');
+  const query = Object.assign({}, data);
+  delete query.token;
+  return (dispatch) => {
+    dispatch(requestUser());
+    return fetch(`http://${ip}:8000/api/user?email=${query.email}`)
+    .then(response => response.json())
+    .then(user => {
+      console.log('checkemail receive:', user);
+      if(user.email){
+        return dispatch(receiveEmailExistError());
+      }
+      return dispatch(receiveEmailNotExist());
     })
     .catch(error => {
       console.error('error retreiving user:', error);

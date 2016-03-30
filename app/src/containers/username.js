@@ -1,6 +1,12 @@
 /* eslint-disable no-use-before-define */
 import React from 'react-native';
 import { connect } from 'react-redux';
+import { updateUser, checkUsername } from '../actions/index';
+import UsernameInput from '../components/username_input';
+import { login } from '../assets/styles';
+import { MKButton } from 'react-native-material-kit';
+import _ from 'lodash';
+
 const {
   Component,
   Text,
@@ -8,11 +14,6 @@ const {
   StyleSheet,
   PropTypes,
 } = React;
-import { updateUser, checkUsername } from '../actions/index';
-import UsernameInput from '../components/username_input';
-import { login } from '../assets/styles';
-import { MKButton } from 'react-native-material-kit';
-import _ from 'lodash';
 
 const CustomButton = new MKButton.Builder()
   .withStyle(login.button)
@@ -42,7 +43,6 @@ class Username extends Component {
   }
   onType(username) {
     this.setState({ username });
-    const context = this;
     _.debounce(this.onCheckUsername, 500)();
   }
   onEnter() {
@@ -64,7 +64,7 @@ class Username extends Component {
             value={this.state.username}
             onChangeText={this.onType}
           />
-          <CustomButton onPress={() => {if(!this.props.duplicateUsername){this.onEnter()}}}>
+          <CustomButton onPress={this.onEnter}>
             <Text style={login.buttonText}>{this.props.loginOrSignup}</Text>
           </CustomButton>
         </View>
