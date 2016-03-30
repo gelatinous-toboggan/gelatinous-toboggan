@@ -43,6 +43,7 @@ class Login extends Component {
     this.onTypeEmail = this.onTypeEmail.bind(this);
     this.onTypePassword = this.onTypePassword.bind(this);
     this.onCheckEmail = this.onCheckEmail.bind(this);
+    this.debounceOnCheckEmail = _.debounce(this.onCheckEmail, 500, { 'leading': true });
   }
 
   onNavigate() {
@@ -93,7 +94,7 @@ class Login extends Component {
     this.setState({ email });
     this.setState({ validEmail: Validator.validate(this.state.email) });
     if (this.state.validEmail) {
-      _.debounce(this.onCheckEmail, 500)();
+      this.debounceOnCheckEmail();
     }
   }
 

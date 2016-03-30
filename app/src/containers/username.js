@@ -26,6 +26,7 @@ class Username extends Component {
     this.onEnter = this.onEnter.bind(this);
     this.onCheckUsername = this.onCheckUsername.bind(this);
     this.state = { username: '' };
+    this.debouncedOnCheckUsername = _.debounce(this.onCheckUsername, 500, { 'leading': true });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,7 +44,7 @@ class Username extends Component {
   }
   onType(username) {
     this.setState({ username });
-    _.debounce(this.onCheckUsername, 500)();
+    this.debouncedOnCheckUsername();
   }
   onEnter() {
     const usernameToLowercase = this.state.username.toLowerCase();
