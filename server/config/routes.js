@@ -143,7 +143,7 @@ export default (app) => {
     })
   });
 
-  app.get('/api/user', (req, res) => {
+  app.get('/api/user/find', (req, res) => {
     console.log('get user', req.query);
     if (_.isEmpty(req.query)) {
       res.status(400).send('Failed to retrieve user');
