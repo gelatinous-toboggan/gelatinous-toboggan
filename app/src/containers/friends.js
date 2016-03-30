@@ -15,6 +15,7 @@ const {
   PropTypes,
   StyleSheet,
   Text,
+  ActivityIndicatorIOS,
 } = React;
 
 // todo: consider factoring out view rendering into own component
@@ -58,7 +59,11 @@ class FriendsContainer extends Component {
 
   render() {
     if (this.props.friends.get('isFetching')) {
-      return <Text>Loading Friends...</Text>;
+      return <ActivityIndicatorIOS
+        animating={true}
+        style={{height: 80}}
+        size="large"
+      />;
     }
     return (
       <ListView

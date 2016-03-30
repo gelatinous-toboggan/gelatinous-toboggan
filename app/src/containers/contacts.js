@@ -18,6 +18,7 @@ const {
   StyleSheet,
   Text,
   View,
+  ActivityIndicatorIOS,
 } = React;
 
 // todo: consider factoring out view rendering into own component
@@ -71,8 +72,12 @@ class ContactsContainer extends Component {
   }
 
   render() {
-    if (this.props.contacts.get('isFetching')) {
-      return <Text>Loading Friends...</Text>;
+    if (this.props.friends.get('isFetching')) {
+      return <ActivityIndicatorIOS
+        animating={true}
+        style={{height: 80}}
+        size="large"
+      />;
     }
     return (
       <View>
