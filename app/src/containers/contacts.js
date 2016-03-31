@@ -72,7 +72,7 @@ class ContactsContainer extends Component {
   }
 
   render() {
-    if (this.props.friends.get('isFetching')) {
+    if (this.props.contacts.get('isFetching')) {
       return <ActivityIndicatorIOS
         animating={true}
         style={{height: 80}}
