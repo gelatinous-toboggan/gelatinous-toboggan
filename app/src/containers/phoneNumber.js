@@ -34,7 +34,7 @@ class PhoneNumber extends Component {
 
   onEnter() {
     this.props.updateUser(this.props.userId, { phoneNumber: this.state.phoneNumber, token: this.props.token });
-    this.props.navigator.push({ name: 'contacts' });
+    this.props.navigator.replace({ name: 'contacts' });
   }
 
   render() {

@@ -29,7 +29,7 @@ class Username extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.duplicateUsername && nextProps.username) {
-      nextProps.navigator.push({ name: 'phone' });
+      nextProps.navigator.replace({ name: 'phone' });
     }
   }
 
