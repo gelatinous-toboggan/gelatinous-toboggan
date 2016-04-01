@@ -83,8 +83,8 @@ const updateQuiltStatusToReady = (id) => {
 }
 
 // options = {username: username}
-const getAllUserQuilts = (username) =>
-  getUser({ username })
+const getAllUserQuilts = (username) => {
+  return getUser({ username })
     .then(user => user.getQuilts({
       where: {
         status: {
@@ -94,7 +94,7 @@ const getAllUserQuilts = (username) =>
     }))
     .then(mapQuilts)
     .catch(error => console.error(`Error retrieving user's quilts: ${error}`));
-
+}
 const getQuilt = (options) => (
   db.Quilt.findOne({ where: options })
     .catch(error => console.error(`Error retrieving quilt: ${error}`))
@@ -143,7 +143,7 @@ const postQuilt = (options) => {
 const updateUserQuiltStatus = (userId, quiltId) => {
   return getUser({ id: userId }).then((user) => {
     return getQuilt({ id: quiltId })
-      .then(quilt => quilt.setUsers(user, { status: 1 }));
+      .then(quilt => quilt.addUser(user, { status: 1 }));
   })
   .then(() => quiltId)
   .catch((error) => console.error(`Error updating user quilt status: ${error}`))
