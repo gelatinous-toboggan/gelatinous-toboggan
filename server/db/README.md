@@ -41,6 +41,22 @@
 
 ####User Controllers
 
+`createUser`
+* **Use**: add user to the database
+* **Parameters**: email, password
+* **Return**:
+
+`tokenForUser`
+
+* **Use**: create token for user
+* **Parameters**: email
+* **Return**: unique token created with a secret
+
+`updateUser`
+* **Use**: update user in db
+* **Parameters**: id, data
+* **Return**:
+
 `getAllUsers`
 
 * **Use**: get all users in the database
@@ -53,13 +69,56 @@
 * **Parameters**: { username: username }
 * **Return**: user or null
 
+`verifyUser`
+
+* **Use**: verify user exists with correct password
+* **Parameters**: username or email, password
+* **Return**: user or null
+
+`crossReference`
+
+* **Use**: find users with matching emails or phone numbers
+* **Parameters**: emails, phone numbers
+* **Return**: users or null
+
+`addFriends`
+
+* **Use**: add friends
+* **Parameters**: userId, friendIds
+* **Return**: friends
+
+`getFriends`
+
+* **Use**: retrieve friends of given user
+* **Parameters**: id
+* **Return**: friends
+
+`getAllOtherUsers`
+
+* **Use**: get all users besides current user
+* **Parameters**: username
+* **Return**: all other users
+
+`getUsersNotifs`
+
+* **Use**: retrieve a user's notifications
+* **Parameters**: userId
+* **Return**: notifications
+
+####Quilt Controllers
+
 `getAllUserQuilts`
 
 * **Use**: retrieves all quilts for a specified user
 * **Parameters**: { username: username }
-* **Return**: array of quilts
+* **Return**: array of quilts or null
 
-####Quilt Controllers
+`getQuilt`
+
+* **Use**: retrieves quilt matching input criteria
+* **Parameters**: criteria --> { where: options }
+* **Return**: quilt or null
+
 
 `postQuilt`
 
@@ -75,6 +134,31 @@
     }
   }
 * **Return**:
+
+`updateQuiltStatusToReady`
+
+* **Use**: update status of quilt with given id to ready
+* **Parameters**: id
+* **Return**:
+
+`updateUserQuiltStatus`
+
+* **Use**: update status of user submission to specific quilt to ready
+* **Parameters**: userId, quiltId
+* **Return**:
+
+`createNotif`
+
+* **Use**: create notifications for users participating in a quilt
+* **Parameters**: userId, quiltId, quiltTheme, messageType, contribName
+* **Return**: notification
+
+`isQuiltDone`
+
+* **Use**: convert quilt status to done if complete
+* **Parameters**: quiltId
+* **Return**:
+
 
 ###TODO:
 -----------------------------
